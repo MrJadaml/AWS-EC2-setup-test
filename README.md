@@ -197,7 +197,7 @@ Locally run `rake secret` to generate a big long secret.
 On the remote server run:
 
 ```
-sudo bash -c "echo 'export SECRET_KEY_BASE=your-secret-key-here' >> /etc/bashrc"
+sudo bash -c "echo 'export SECRET_KEY_BASE=6d1f8aa2599002c9127f2231da5515e63c98e41bd9c170a28a48c3dca51b2d55e5106b7a630ab33129a6b020a28310f3c79d82b33c93759ec21b04dc63529556' >> /etc/bashrc"
 source /etc/bashrc
 ```
 
@@ -215,7 +215,7 @@ Locally, from this directory run:
 
 ```
 git archive -o app.tar.gz --prefix=app/ master
-scp -i ~/Downloads/jeff-dean.pem app.tar.gz ec2-user@54.148.77.194:
+scp -i ~/Downloads/adam.pem app.tar.gz ec2-user@54.148.100.196:
 ```
 
 NOTE: replace these commands with your key name and ip address.
@@ -250,7 +250,7 @@ Paste the following code in all at once:
 ```
 sudo bash -c "cat >> /etc/httpd/conf.d/app.conf" <<EOL
 <VirtualHost *:80>
-  ServerName ec2-54-148-77-194.us-west-2.compute.amazonaws.com
+  ServerName ec2-54-148-100-196.us-west-2.compute.amazonaws.com
   DocumentRoot /home/ec2-user/app/public
   <Directory /home/ec2-user/app/pubic>
      # This relaxes Apache security settings.
@@ -273,3 +273,10 @@ sudo service httpd restart
 ## That's it!!
 
 Well, kind of...
+
+Reboots -> chkconfig
+logrotate -> keeps logs from overloading server
+pg permissions - link in this readme
+load balencing / pg server
+
+SED will pg config all commands
