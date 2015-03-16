@@ -4,10 +4,16 @@
 
 Expose you to everything that happens "under the hood" when you deploy a rails app.
 
-Non-goals: memorization
+**Expectations**
 
-Expectations: it's an entire field of the industry.  You are not expected to be able to crank
-through this on your own.
+This is an entire field of the industry.  You are not expected to be able to reproduce
+these steps from memory, or be able to deeply understand all the concepts by the
+end of this lesson.
+
+**Disclaimer**
+
+This is _not_ an exhaustive demo.  This doesn't cover a number of crucial topics
+such as log rotation, scaling, security etc...
 
 ## Setup
 
@@ -176,7 +182,7 @@ Verify:
 psql -U rails postgres
 ```
 
-You should be in a `psql` prompt.
+You should be in a `psql` prompt.  `CTL+D` to exit.
 
 Resources
 
@@ -209,7 +215,7 @@ Locally, from this directory run:
 
 ```
 git archive -o app.tar.gz --prefix=app/ master
-scp -i ~/jeff-dean.pem app.tar.gz ec2-user@54.148.77.194:
+scp -i ~/Downloads/jeff-dean.pem app.tar.gz ec2-user@54.148.77.194:
 ```
 
 NOTE: replace these commands with your key name and ip address.
@@ -220,9 +226,11 @@ On the server run:
 tar zxvf app.tar.gz
 cd app
 bundle --without development test
-RAILS_ENV=production rake db:create db:seed
+RAILS_ENV=production rake db:create db:migrate db:seed
 RAILS_ENV=production rake assets:precompile
 ```
+
+NOTE: `bundle` will take a long time.
 
 Verify
 
@@ -232,6 +240,8 @@ To see if this is working, we can turn off Apache and just run Rails directly:
 sudo service httpd stop
 rvmsudo -E bash -c 'rails s -p 80 -b 0.0.0.0 -e production'
 ```
+
+`CTL+C` to stop that server.
 
 ## Register the app with Apache
 
