@@ -16,3 +16,4 @@
 .env
 
 *.tar.gz
+*.pem
