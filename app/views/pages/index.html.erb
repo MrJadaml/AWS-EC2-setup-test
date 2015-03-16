@@ -1,4 +1,29 @@
-<div class="starter-template">
-  <h1>Bootstrap starter template</h1>
-  <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
+<div class="jumbotron">
+  <h1>Yay!</h1>
+  <p class="lead">
+    If you see a list of emails below this line, you have deployed correctly!
+  </p>
 </div>
+
+<div class="page-header">
+  <h1> Users </h1>
+</div>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>
+        Name
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    <% User.all.each do |user| %>
+      <tr>
+        <td>
+          <%= user.email %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

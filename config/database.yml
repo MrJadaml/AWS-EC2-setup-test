@@ -3,8 +3,10 @@ default: &default
 
 development:
   <<: *default
-  database: rails-template-01-development
+  database: aws_example_development
 
-test:
+production:
   <<: *default
-  database: rails-template-01-test
+  database: aws_example_production
+  username: rails
+  password:
