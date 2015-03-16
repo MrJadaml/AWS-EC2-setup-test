@@ -14,6 +14,10 @@ gem 'bootstrap-sass', '~> 3.3.3'
 gem 'autoprefixer-rails'
 gem 'faker'
 
+group :production do
+  gem 'therubyracer'
+end
+
 group :development, :test do
   gem 'rspec-rails', '~> 3.2.0'
   gem 'capybara', '~> 2.4.4'
